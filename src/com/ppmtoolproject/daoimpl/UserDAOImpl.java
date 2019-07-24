@@ -1,6 +1,8 @@
 package com.ppmtoolproject.daoimpl;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import com.ppmtoolproject.DB.DatabaseConnection;
@@ -45,8 +47,20 @@ public class UserDAOImpl extends DatabaseConnection implements UserDAO {
 
 	@Override
 	public User findByEmail(String email) {
-		// TODO Auto-generated method stub
-		return null;
+		User user = null;
+		String sql = "select * from user where user_email = " + email;
+		PreparedStatement pstmt = createPreparedStatement(sql);
+		try {
+			ResultSet rs = pstmt.executeQuery(sql);
+			if(rs.next());
+			user.setName(rs.getString("user_name"));
+			user.setEmail(rs.getString("user_email"));
+			user.setPassword(rs.getString("user_password"));
+			user.setUserType(rs.getInt("user_type"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return user;
 	}
 
 	@Override

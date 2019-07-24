@@ -4,7 +4,7 @@ public class User {
 	private String name;
 	private String email; //primary key
 	private String password;
-	private String userType;
+	private int userType;
 
 	public String getName() {
 		return name;
@@ -30,11 +30,11 @@ public class User {
 		this.password = password;
 	}
 
-	public String getUserType() {
+	public int getUserType() {
 		return userType;
 	}
 
-	public void setUserType(String userType) {
+	public void setUserType(int userType) {
 		this.userType = userType;
 	}
 
