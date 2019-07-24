@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.ppmtoolproject.domain.User;
 import com.ppmtoolproject.exception.PasswordUnmatchException;
+import com.ppmtoolproject.exception.UserNotFoundException;
 
 public interface UserService {
 	void createUser(User user);
@@ -17,4 +18,6 @@ public interface UserService {
 	List<User> getAllUsers();
 	
 	boolean validatePassword(String originalPassword, String confirmPassword) throws PasswordUnmatchException;
+
+	User login(String email, String password) throws PasswordUnmatchException, UserNotFoundException;
 }

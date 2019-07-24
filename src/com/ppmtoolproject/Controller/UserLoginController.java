@@ -42,22 +42,15 @@ public class UserLoginController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//create session
-		boolean create = true;
-		HttpSession session = request.getSession(create);
-		
-		
-		
-		
-		/*
-		User user = new User();
-		user.setName(request.getParameter("user_name"));
-		user.setEmail(request.getParameter("user_email"));
-		user.setPassword(request.getParameter("user_password"));
-		user.setUserType(request.getParameter("user_type"));
-		*/
-		
-		
+		User user;
+		try {
+			if((user = service.login(request.getParameter("email"), request.getParameter("password"))) != null) {
+				boolean create = true;
+				HttpSession session = request.getSession(create);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		
 		
 		//doGet(request, response);

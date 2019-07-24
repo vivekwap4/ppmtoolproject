@@ -39,7 +39,7 @@ public class UserRegistrationController extends HttpServlet {
 				user.setName(request.getParameter("user_name"));
 				user.setEmail(request.getParameter("user_email"));
 				user.setPassword(request.getParameter("user_password"));
-				user.setUserType(request.getParameter("user_type"));	
+				user.setUserType(Integer.valueOf(request.getParameter("user_type")));	
 			}else {
 				
 			}

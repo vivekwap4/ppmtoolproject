@@ -11,7 +11,7 @@ public class DAOSaveTest {
 		u.setName("Adam");
 		u.setPassword("Adam");
 		u.setEmail("adam@adam.com");
-		u.setUserType("dummy");
+		u.setUserType(3);
 		
 		dao.save(u);
 	}
