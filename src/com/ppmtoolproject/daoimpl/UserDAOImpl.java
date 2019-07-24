@@ -11,14 +11,14 @@ public class UserDAOImpl extends DatabaseConnection implements UserDAO {
 
 	@Override
 	public void save(User user) {
-		String sql = "INSERT INTO users (name, email, password, userType) values (?,?,?, ?)";
+		String sql = "INSERT INTO user(user_name, user_email, user_password, user_type) values (?,?,?,?)";
 		PreparedStatement pstmt = createPreparedStatement(sql);
 		try{
-			pstmt.setString(1,  user.getName());
+			pstmt.setString(1, user.getName());
 			pstmt.setString(2, user.getEmail());
 			pstmt.setString(3, user.getPassword());
-			pstmt.setString(4, user.getUserType());
-			pstmt.executeUpdate();
+			pstmt.setInt(4, 1);
+			pstmt.execute();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

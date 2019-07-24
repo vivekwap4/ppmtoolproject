@@ -32,8 +32,7 @@
                     <p class="lead text-center">Create your Account</p>
                     <form action="./UserRegistrationController" method="POST">
                         <div class="form-group">
-                            <input type="text" class="form-control form-control-lg" placeholder="Name" name="user_name"
-                                required />
+                            <input type="text" class="form-control form-control-lg" placeholder="Name" name="user_name" required />
                         </div>
                         <div class="form-group">
                             <input type="email" class="form-control form-control-lg" placeholder="Email Address" name="user_email" />
@@ -43,8 +42,7 @@
                             <input type="password" class="form-control form-control-lg" placeholder="Password" name="user_password" />
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control form-control-lg" placeholder="Confirm Password"
-                                name="user_password2" />
+                            <input type="password" class="form-control form-control-lg" placeholder="Confirm Password" name="user_password2" />
                         </div>
                         <input type="submit" class="btn btn-info btn-block mt-4" />
                     </form>
