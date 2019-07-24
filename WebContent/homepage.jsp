@@ -34,7 +34,7 @@
 	<!-- NavBar Component Code -->
 	<nav class="navbar navbar-expand-sm navbar-dark bg-primary mb-4">
 		<div class="container">
-			<a class="navbar-brand" href="Dashboard.html"> Personal Project
+			<a class="navbar-brand" href="homepage.jsp"> Personal Project
 				Management Tool </a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#mobile-nav">
