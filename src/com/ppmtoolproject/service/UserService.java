@@ -16,5 +16,5 @@ public interface UserService {
 
 	List<User> getAllUsers();
 	
-	boolean validatePassword(String originalPassword, String confirmPassword) throws PasswordUnmatchException;
+	boolean validatePassword(String originalPassword, String confirmPassword);
 }

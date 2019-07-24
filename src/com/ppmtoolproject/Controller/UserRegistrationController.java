@@ -2,6 +2,7 @@ package com.ppmtoolproject.Controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,29 +32,18 @@ public class UserRegistrationController extends HttpServlet {
     }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		User user = new User();
 		
-		try {
 			if(service.validatePassword(request.getParameter("user_password"), request.getParameter("user_password2"))){
 				user.setName(request.getParameter("user_name"));
 				user.setEmail(request.getParameter("user_email"));
 				user.setPassword(request.getParameter("user_password"));
 				user.setUserType(request.getParameter("user_type"));	
+				service.createUser(user);
 			}else {
-				
+				response.sendRedirect("./register.jsp?msg=Passwords do not match");
 			}
-		} catch (PasswordUnmatchException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		
-		//Now use the request.getParameter() method to get the form parameters from the request. This method is invoked after user
-		// clicks submit on the registration form
-		
-		
 		
 	}
 
