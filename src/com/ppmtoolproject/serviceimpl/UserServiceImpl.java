@@ -45,19 +45,17 @@ public class UserServiceImpl extends UserDAOImpl implements UserService{
 	}
 	
 	@Override
-	public boolean validatePassword(String originalPassword, String confirmPassword) throws PasswordUnmatchException {
+	public boolean validatePassword(String originalPassword, String confirmPassword){
 		if(originalPassword.equals(confirmPassword)) return true;
-		else throw new PasswordUnmatchException("Passwords do not match. Please recheck.");
+		else return false;
 	}
 	
 	
 	@Override
-	public User login(String email, String password) throws PasswordUnmatchException, UserNotFoundException{
-		User user = getUser(email);
-		if(user == null) {
-			throw new UserNotFoundException("Email was not found");
-		}
-		if(!validatePassword(user.getPassword(), password)) return null;
-		return user;
+	public User login(String email, String password){
+		User loggingInUser = getUser(email);
+		if(loggingInUser == null) return null;
+		if(!validatePassword(loggingInUser.getPassword(), password)) return null;
+		return loggingInUser;
 	}
 }

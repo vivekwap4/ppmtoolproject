@@ -44,9 +44,10 @@ public class UserLoginController extends HttpServlet {
 		// TODO Auto-generated method stub
 		User user;
 		try {
-			if((user = service.login(request.getParameter("email"), request.getParameter("password"))) != null) {
+			if((user = service.login(request.getParameter("user_email"), request.getParameter("user_password"))) != null) {
 				boolean create = true;
 				HttpSession session = request.getSession(create);
+				session.setAttribute("userType", user.getUserType());
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
