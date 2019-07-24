@@ -2,15 +2,23 @@ package com.ppmtoolproject.serviceimpl;
 
 import java.util.List;
 
+import com.ppmtoolproject.dao.UserDAO;
+import com.ppmtoolproject.daoimpl.UserDAOImpl;
 import com.ppmtoolproject.domain.User;
+import com.ppmtoolproject.exception.PasswordUnmatchException;
 import com.ppmtoolproject.service.UserService;
 
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends UserDAOImpl implements UserService{
 
+	UserDAO userDao = null;
+	
+	public UserServiceImpl(){
+		this.userDao = new UserDAOImpl();
+	}
+	
 	@Override
 	public void createUser(User user) {
-		// TODO Auto-generated method stub
-
+		userDao.save(user);
 	}
 
 	@Override
@@ -35,6 +43,12 @@ public class UserServiceImpl implements UserService {
 	public List<User> getAllUsers() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Override
+	public boolean validatePassword(String originalPassword, String confirmPassword) throws PasswordUnmatchException {
+		if(originalPassword.equals(confirmPassword)) return true;
+		else throw new PasswordUnmatchException("Passwords do not match. Please recheck.");
 	}
 
 }
