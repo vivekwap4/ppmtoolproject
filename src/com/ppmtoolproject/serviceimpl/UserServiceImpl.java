@@ -46,9 +46,9 @@ public class UserServiceImpl extends UserDAOImpl implements UserService{
 	}
 	
 	@Override
-	public boolean validatePassword(String originalPassword, String confirmPassword) throws PasswordUnmatchException {
+	public boolean validatePassword(String originalPassword, String confirmPassword) {
 		if(originalPassword.equals(confirmPassword)) return true;
-		else throw new PasswordUnmatchException("Passwords do not match. Please recheck.");
+		else return false;
 	}
 
 }
