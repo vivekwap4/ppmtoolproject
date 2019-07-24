@@ -34,7 +34,7 @@ public class UserRegistrationController extends HttpServlet {
 		user.setEmail(request.getParameter("user_email"));
 		user.setPassword(request.getParameter("user_password"));
 		user.setUserType(request.getParameter("user_type"));
-		doGet(request, response);
+//		doGet(request, response);
 		
 		//Now use the request.getParameter() method to get the form parameters from the request. This method is invoked after user
 		// clicks submit on the registration form
