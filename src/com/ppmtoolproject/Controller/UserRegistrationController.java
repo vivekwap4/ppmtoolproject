@@ -25,6 +25,10 @@ public class UserRegistrationController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		
+		//Now use the request.getParameter() method to get the form parameters from the request. This method is invoked after user
+		// clicks submit on the registration form
+		
 	}
 
 }
