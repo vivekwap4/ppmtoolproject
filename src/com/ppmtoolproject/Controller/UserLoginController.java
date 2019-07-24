@@ -8,26 +8,37 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ppmtoolproject.dao.UserDAO;
+import com.ppmtoolproject.daoimpl.UserDAOImpl;
 import com.ppmtoolproject.domain.User;
-import com.ppmtoolproject.service.UserService;
-import com.ppmtoolproject.serviceimpl.UserServiceImpl;
 
 /**
- * Servlet implementation class UserRegistrationController
+ * Servlet implementation class UserLoginController
  */
-@WebServlet("/UserRegistrationController")
-public class UserRegistrationController extends HttpServlet {
-	UserService service = new UserServiceImpl();
+@WebServlet("/UserLoginController")
+public class UserLoginController extends HttpServlet {
+	UserDAO userDao = new UserDAOImpl();
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserRegistrationController() {
+    public UserLoginController() {
         super();
         // TODO Auto-generated constructor stub
     }
 
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		User user = new User();
@@ -35,13 +46,12 @@ public class UserRegistrationController extends HttpServlet {
 		user.setEmail(request.getParameter("user_email"));
 		user.setPassword(request.getParameter("user_password"));
 		user.setUserType(request.getParameter("user_type"));
-//		doGet(request, response);
-		
-		//Now use the request.getParameter() method to get the form parameters from the request. This method is invoked after user
-		// clicks submit on the registration form
 		
 		
 		
+		
+		
+		//doGet(request, response);
 	}
 
 }
