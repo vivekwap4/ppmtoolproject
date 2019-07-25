@@ -22,28 +22,24 @@ public class UserServiceImpl extends UserDAOImpl implements UserService{
 	}
 
 	@Override
-	public void updateUser(User project) {
-		// TODO Auto-generated method stub
-
+	public void updateUser(User user) {
+		userDao.update(user);
 	}
 
 	@Override
 	public void removeUser(String email) {
-		// TODO Auto-generated method stub
-
+		userDao.delete(email);
 	}
 
 	@Override
 	public User getUser(String email) {
-		// TODO Auto-generated method stub
-		return null;
+		return userDao.findByEmail(email);
 	}
 
 	@Override
 	public List<User> getAllUsers() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		return userDao.findAll();
+				}
 	
 	@Override
 	public boolean validatePassword(String originalPassword, String confirmPassword) {
