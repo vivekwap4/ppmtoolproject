@@ -28,12 +28,13 @@ public class UserDAOImpl extends DatabaseConnection implements UserDAO {
 	@Override
 	public void update(User user) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	public void delete(Long id) {
-		// TODO Auto-generated method stub
+		
+		//DELETE FROM tutorials_tbl WHERE tutorial_id=3;
 
 	}
 

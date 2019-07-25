@@ -17,4 +17,6 @@ public interface UserService {
 	List<User> getAllUsers();
 	
 	boolean validatePassword(String originalPassword, String confirmPassword);
+	
+	boolean checkEmail(String email);
 }

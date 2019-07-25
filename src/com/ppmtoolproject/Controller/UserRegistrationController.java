@@ -35,14 +35,21 @@ public class UserRegistrationController extends HttpServlet {
 		
 		User user = new User();
 		
-			if(service.validatePassword(request.getParameter("user_password"), request.getParameter("user_password2"))){
+			if(service.validatePassword(request.getParameter("user_password"), request.getParameter("user_password2"))
+					&& !service.checkEmail(request.getParameter("user_email"))){
 				user.setName(request.getParameter("user_name"));
 				user.setEmail(request.getParameter("user_email"));
 				user.setPassword(request.getParameter("user_password"));
 				user.setUserType(request.getParameter("user_type"));	
 				service.createUser(user);
+				
+				
 			}else {
+				
+				
 				response.sendRedirect("./register.jsp?msg=Passwords do not match");
+				
+				
 			}
 		
 	}

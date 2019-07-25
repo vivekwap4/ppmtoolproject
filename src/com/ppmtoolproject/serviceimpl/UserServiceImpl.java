@@ -50,5 +50,12 @@ public class UserServiceImpl extends UserDAOImpl implements UserService{
 		if(originalPassword.equals(confirmPassword)) return true;
 		else return false;
 	}
+	
+	@Override
+	public boolean checkEmail(String email) {
+		
+		if(email.equals(getUser(email))) return true; 
+		return false;
+	}
 
 }
