@@ -48,11 +48,15 @@ public class UserLoginController extends HttpServlet {
 				boolean create = true;
 				HttpSession session = request.getSession(create);
 				session.setAttribute("userType", user.getUserType());
-				response.sendRedirect("dashboard.jsp");
+				session.setAttribute("userEmail", user.getEmail());
+				session.setAttribute("userName", user.getName());
+				response.sendRedirect("dashboard.jsp?type=" + session.getAttribute("userType"));
+			}
+			else{
+				response.sendRedirect("login.jsp");
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
-			response.sendRedirect("dashboard;jsp");
 		}
 	}
 }

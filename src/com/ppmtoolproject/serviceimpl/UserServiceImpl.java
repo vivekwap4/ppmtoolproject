@@ -53,8 +53,14 @@ public class UserServiceImpl extends UserDAOImpl implements UserService{
 	
 	public User login(String email, String password){
 		User loggingInUser = getUser(email);
-		if(loggingInUser == null) return null;
-		if(!validatePassword(loggingInUser.getPassword(), password)) return null;
+		if(loggingInUser == null) {
+			System.out.println("can't find user");
+			return null;
+		}
+		if(!validatePassword(loggingInUser.getPassword(), password)) {
+			System.out.println("wrong password");
+			return null;
+		}
 		return loggingInUser;
 	}
 
