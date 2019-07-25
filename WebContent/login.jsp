@@ -67,7 +67,7 @@
             <div class="row">
                 <div class="col-md-8 m-auto">
                     <h1 class="display-4 text-center">Log In</h1>
-                    <form action="dashboard.html">
+                    <form action="./UserLoginController" method="post">
                         <div class="form-group">
                             <input type="email" class="form-control form-control-lg" placeholder="Email Address" name="email" />
                         </div>
