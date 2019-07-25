@@ -7,17 +7,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.ppmtoolproject.dao.UserDAO;
-import com.ppmtoolproject.daoimpl.UserDAOImpl;
 import com.ppmtoolproject.domain.User;
+import com.ppmtoolproject.service.UserService;
+import com.ppmtoolproject.serviceimpl.UserServiceImpl;
 
 /**
  * Servlet implementation class UserLoginController
  */
 @WebServlet("/UserLoginController")
 public class UserLoginController extends HttpServlet {
-	UserDAO userDao = new UserDAOImpl();
+	UserService service = new UserServiceImpl();
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -41,17 +42,15 @@ public class UserLoginController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		User user = new User();
-		user.setName(request.getParameter("user_name"));
-		user.setEmail(request.getParameter("user_email"));
-		user.setPassword(request.getParameter("user_password"));
-		user.setUserType(request.getParameter("user_type"));
-		
-		
-		
-		
-		
-		//doGet(request, response);
+		User user;
+		try {
+			if((user = service.login(request.getParameter("user_email"), request.getParameter("user_password"))) != null) {
+				boolean create = true;
+				HttpSession session = request.getSession(create);
+				session.setAttribute("userType", user.getUserType());
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
-
 }
