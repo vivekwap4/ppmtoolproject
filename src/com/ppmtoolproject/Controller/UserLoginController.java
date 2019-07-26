@@ -13,9 +13,6 @@ import com.ppmtoolproject.domain.User;
 import com.ppmtoolproject.service.UserService;
 import com.ppmtoolproject.serviceimpl.UserServiceImpl;
 
-/**
- * Servlet implementation class UserLoginController
- */
 @WebServlet("/UserLoginController")
 public class UserLoginController extends HttpServlet {
 	
