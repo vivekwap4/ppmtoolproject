@@ -40,8 +40,18 @@ public class UserRegistrationController extends HttpServlet {
 				user.setEmail(request.getParameter("user_email"));
 				user.setPassword(request.getParameter("user_password"));
 				user.setUserType(request.getParameter("user_type"));	
-				service.createUser(user);
-				response.sendRedirect("./login.jsp?msg=User created successfully");
+				
+				System.out.println("The user email is in doPost and the value is "+user.getEmail());
+				
+				if(!service.checkEmail(request.getParameter("user_email"))) {
+					System.out.println("Inside the second if of doPost "+service.checkEmail(request.getParameter("user_email")));
+					service.createUser(user);
+					response.sendRedirect("./login.jsp?msg=User created successfully");
+				}
+				else {
+					response.sendRedirect("./register.jsp?msg= Email already exists");
+				}
+			
 			}else {
 				response.sendRedirect("./register.jsp?msg=Passwords do not match");
 			}

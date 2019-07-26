@@ -63,12 +63,15 @@ public class UserDAOImpl extends DatabaseConnection implements UserDAO {
 
 	@Override
 	public User findByEmail(String email) {
-		User sqlUser = new User();
+		System.out.println("The user email is in findByEmail and the value is "+email);
+
+		User sqlUser = null;
 		String sql = "SELECT * FROM user WHERE user_email ='"+email+"'";
 		try {
 			PreparedStatement pstmt = createPreparedStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			if(rs.next()) {
+				sqlUser = new User();
 				sqlUser.setName(rs.getString("user_name"));
 				sqlUser.setEmail(rs.getString("user_email"));
 				sqlUser.setPassword(rs.getString("user_password"));
@@ -81,6 +84,8 @@ public class UserDAOImpl extends DatabaseConnection implements UserDAO {
 	}
 
 	List<User> aUser = new ArrayList();
+	
+	
 
 	@Override
 	public List<User> findAll() {

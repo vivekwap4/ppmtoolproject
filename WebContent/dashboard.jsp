@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
+<head>
 
 <head>
     <!-- Required meta tags -->
@@ -9,8 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-        crossorigin="anonymous">
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
 
 
@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
         crossorigin="anonymous">
 
-    <title>Kanban Tool</title>
+    <title>PPM Tool</title>
 </head>
 <!-- Spring Boot / React Students please ignore above -->
 
@@ -30,7 +30,7 @@
     <nav class="navbar navbar-expand-sm navbar-dark bg-primary mb-4">
         <div class="container">
             <a class="navbar-brand" href="Dashboard.html">
-                Personal Kanban Tool
+                Personal Project Management Tool
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobile-nav">
                 <span class="navbar-toggler-icon" />
@@ -60,28 +60,64 @@
             </div>
         </div>
     </nav>
-    <!-- end of NavBar -->
-    <!-- Login -->
-    <div class="login">
+
+    <!-- Dashboard Component (Project Item included) -->
+
+    <div class="projects">
         <div class="container">
             <div class="row">
-                <div class="col-md-8 m-auto">
-                    <h1 class="display-4 text-center">Log In</h1>
-                    <form action="./dashboard.jsp" method="post">
-                        <div class="form-group">
-                            <input type="email" class="form-control form-control-lg" placeholder="Email Address" name="email" />
+                <div class="col-md-12">
+                    <h1 class="display-4 text-center">Projects</h1>
+                    <br />
+                    <a href="ProjectForm.html" class="btn btn-lg btn-info">
+                        Create a Project
+                    </a>
+                    <br />
+                    <hr />
+
+                    <!-- Project Item Component -->
+                    <div class="container">
+                        <div class="card card-body bg-light mb-3">
+                            <div class="row">
+                                <div class="col-2">
+                                    <span class="mx-auto">REACT</span>
+                                </div>
+                                <div class="col-lg-6 col-md-4 col-8">
+                                    <h3>Spring / React Project</h3>
+                                    <p>Project to create a Kanban Board with Spring Boot and React</p>
+                                </div>
+                                <div class="col-md-4 d-none d-lg-block">
+                                    <ul class="list-group">
+                                        <a href="#">
+                                            <li class="list-group-item board">
+                                                <i class="fa fa-flag-checkered pr-1">Project Board </i>
+                                            </li>
+                                        </a>
+                                        <a href="#">
+                                            <li class="list-group-item update">
+                                                <i class="fa fa-edit pr-1">Update Project Info</i>
+                                            </li>
+                                        </a>
+                                        <a href="">
+                                            <li class="list-group-item delete">
+                                                <i class="fa fa-minus-circle pr-1">Delete Project</i>
+                                            </li>
+                                        </a>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control form-control-lg" placeholder="Password" name="password" />
-                        </div>
-                        <input type="submit" class="btn btn-info btn-block mt-4" />
-                    </form>
+                    </div>
+                    <!-- End of Project Item Component -->
+
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- End of Login form -->
+    <!-- End of Dashboard Component -->
+
+
 
     <!-- Spring Boot / React Students please ignore below -->
 
