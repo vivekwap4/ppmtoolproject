@@ -19,4 +19,6 @@ public interface UserService {
 	boolean validatePassword(String originalPassword, String confirmPassword);
 	
 	boolean authenticate(String email, String password);
+	
+	boolean checkEmail(String email);
 }

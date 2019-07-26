@@ -40,7 +40,7 @@ public class UserServiceImpl extends UserDAOImpl implements UserService{
 	}
 
 	@Override
-	public List<User> getAllUsers() {
+	public List<User> getAllUsers() { 
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -49,6 +49,22 @@ public class UserServiceImpl extends UserDAOImpl implements UserService{
 	public boolean validatePassword(String originalPassword, String confirmPassword) {
 		if(originalPassword.equals(confirmPassword)) return true;
 		else return false;
+	}
+	
+	@Override
+	public boolean checkEmail(String email) {
+		
+		User searchForUser = new User();
+		searchForUser = userDao.findByEmail(email);
+
+		System.out.println("The user email is in checkEmail and the value is "+email);
+		
+
+		if(searchForUser != null) {
+			System.out.println("Inside the if of checkEmail ");
+			 return true;
+		}
+		return false;
 	}
 	
 	public boolean authenticate(String email, String password){
