@@ -18,36 +18,35 @@ import com.ppmtoolproject.serviceimpl.UserServiceImpl;
  */
 @WebServlet("/UserLoginController")
 public class UserLoginController extends HttpServlet {
-	UserService service = new UserServiceImpl();
+	
+	UserService service = null;
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+     
     public UserLoginController() {
-        super();
-        // TODO Auto-generated constructor stub
+        this.service = new UserServiceImpl();
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		User user;
+		
 		try {
-			if((user = service.login(request.getParameter("user_email"), request.getParameter("user_password"))) != null) {
+			if(service.authenticate(request.getParameter("email"), request.getParameter("password"))){
+				System.out.println("Inside the try block of doPost" + request.getParameter("email") + " " + request.getParameter("password"));
+				User loggedInUser = new User();
+				loggedInUser = service.getUser(request.getParameter("email"));
+				System.out.println("The email of logged in user is : "+service.getUser(request.getParameter("email")));
 				boolean create = true;
 				HttpSession session = request.getSession(create);
-				session.setAttribute("userType", user.getUserType());
+				session.setAttribute("userEmail", loggedInUser.getEmail());
+				session.setAttribute("userName", loggedInUser.getName());
+				response.sendRedirect("dashboard.jsp?type=" + session.getAttribute("userEmail")+"+"+ session.getAttribute("userName"));
+			}
+			else{
+				response.sendRedirect("login.jsp?msg=Please check username/password");
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

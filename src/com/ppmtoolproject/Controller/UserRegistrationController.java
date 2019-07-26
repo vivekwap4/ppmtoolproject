@@ -41,6 +41,7 @@ public class UserRegistrationController extends HttpServlet {
 				user.setPassword(request.getParameter("user_password"));
 				user.setUserType(request.getParameter("user_type"));	
 				service.createUser(user);
+				response.sendRedirect("./login.jsp?msg=User created successfully");
 			}else {
 				response.sendRedirect("./register.jsp?msg=Passwords do not match");
 			}
