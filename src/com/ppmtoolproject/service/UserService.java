@@ -8,7 +8,7 @@ import com.ppmtoolproject.exception.PasswordUnmatchException;
 public interface UserService {
 	void createUser(User user);
 
-	void updateUser(User project);
+	void updateUser(User user);
 
 	void removeUser(String email);
 
@@ -18,5 +18,5 @@ public interface UserService {
 	
 	boolean validatePassword(String originalPassword, String confirmPassword);
 	
-	public User login(String email, String password);
+	boolean authenticate(String email, String password);
 }

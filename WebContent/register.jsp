@@ -63,8 +63,6 @@
         </div>
     </div>
 
-
-
     <!-- End of Registration Form -->
 
     <!-- Spring Boot / React Students please ignore below -->

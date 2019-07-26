@@ -22,7 +22,7 @@ public class UserServiceImpl extends UserDAOImpl implements UserService{
 	}
 
 	@Override
-	public void updateUser(User project) {
+	public void updateUser(User user) {
 		// TODO Auto-generated method stub
 
 	}
@@ -36,7 +36,7 @@ public class UserServiceImpl extends UserDAOImpl implements UserService{
 	@Override
 	public User getUser(String email) {
 		// TODO Auto-generated method stub
-		return null;
+		return userDao.findByEmail(email);
 	}
 
 	@Override
@@ -51,17 +51,19 @@ public class UserServiceImpl extends UserDAOImpl implements UserService{
 		else return false;
 	}
 	
-	public User login(String email, String password){
-		User loggingInUser = getUser(email);
-		if(loggingInUser == null) {
-			System.out.println("can't find user");
-			return null;
+	public boolean authenticate(String email, String password){
+		User loggingInUser = userDao.findByEmail(email);
+		System.out.println("Logging in user is " +loggingInUser.getEmail());
+		System.out.println("Logging in user's password is " +loggingInUser.getPassword());
+//		if(loggingInUser == null) {
+//			System.out.println("can't find user");
+//			return false;
+//		}else 
+		if(loggingInUser == null) return false;
+		
+		if(loggingInUser.getPassword().equals(password)){
+			return true;
 		}
-		if(!validatePassword(loggingInUser.getPassword(), password)) {
-			System.out.println("wrong password");
-			return null;
-		}
-		return loggingInUser;
+		return false;
 	}
-
 }
