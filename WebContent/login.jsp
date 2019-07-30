@@ -27,6 +27,17 @@
 
 
 	<jsp:include page="WEB-INF/navbar.jsp"></jsp:include>
+	
+	<!-- Notification Start from Bootstrap -->
+	<div class="alert alert-warning alert-dismissible fade show"
+		role="alert">
+		<strong>Message:</strong> ${param.msg}
+		<button type="button" class="close" data-dismiss="alert"
+			aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<!-- Notification end -->
 
 
     <!-- end of NavBar -->
@@ -36,7 +47,7 @@
             <div class="row">
                 <div class="col-md-8 m-auto">
                     <h1 class="display-4 text-center">Log In</h1>
-                    <form action="./dashboard.jsp" method="post">
+                    <form action="UserLoginController" method="post">
                         <div class="form-group">
                             <input type="email" class="form-control form-control-lg" placeholder="Email Address" name="email" />
                         </div>

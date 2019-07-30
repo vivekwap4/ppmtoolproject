@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.ppmtoolproject.domain.User;
+import com.ppmtoolproject.exception.IncorrectPasswordException;
 import com.ppmtoolproject.service.UserService;
 import com.ppmtoolproject.serviceimpl.UserServiceImpl;
 
@@ -43,10 +44,10 @@ public class UserLoginController extends HttpServlet {
 				response.sendRedirect("dashboard.jsp?type=" + session.getAttribute("userEmail")+"+"+ session.getAttribute("userName"));
 			}
 			else{
-				response.sendRedirect("login.jsp?msg=Please check username/password");
+				throw new IncorrectPasswordException("Incorrect Password");
 			}
 		}catch(Exception e) {
-			e.printStackTrace();
+			response.sendRedirect("login.jsp?msg=" + e.getMessage());
 		}
 	}
 }
