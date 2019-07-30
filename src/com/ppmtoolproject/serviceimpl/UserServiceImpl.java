@@ -5,7 +5,7 @@ import java.util.List;
 import com.ppmtoolproject.dao.UserDAO;
 import com.ppmtoolproject.daoimpl.UserDAOImpl;
 import com.ppmtoolproject.domain.User;
-import com.ppmtoolproject.exception.PasswordUnmatchException;
+import com.ppmtoolproject.exception.PasswordMismatchException;
 import com.ppmtoolproject.service.UserService;
 
 public class UserServiceImpl extends UserDAOImpl implements UserService{
@@ -46,7 +46,7 @@ public class UserServiceImpl extends UserDAOImpl implements UserService{
 	}
 	
 	@Override
-	public boolean validatePassword(String originalPassword, String confirmPassword) {
+	public boolean validatePassword(String originalPassword, String confirmPassword) throws PasswordMismatchException{
 		if(originalPassword.equals(confirmPassword)) return true;
 		else return false;
 	}

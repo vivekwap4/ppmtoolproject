@@ -3,7 +3,7 @@ package com.ppmtoolproject.service;
 import java.util.List;
 
 import com.ppmtoolproject.domain.User;
-import com.ppmtoolproject.exception.PasswordUnmatchException;
+import com.ppmtoolproject.exception.PasswordMismatchException;
 
 public interface UserService {
 	void createUser(User user);
@@ -16,7 +16,7 @@ public interface UserService {
 
 	List<User> getAllUsers();
 	
-	boolean validatePassword(String originalPassword, String confirmPassword);
+	boolean validatePassword(String originalPassword, String confirmPassword) throws PasswordMismatchException;
 	
 	boolean authenticate(String email, String password);
 	
