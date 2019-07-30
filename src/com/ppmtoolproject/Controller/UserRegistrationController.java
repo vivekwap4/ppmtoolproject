@@ -50,7 +50,7 @@ public class UserRegistrationController extends HttpServlet {
 				}
 			
 			}else {
-				response.sendRedirect("./register.jsp?msg=Passwords do not match");
+				throw new EmailExistsException("Password do not match");
 			}
 		}catch(Exception e) {
 			response.sendRedirect("./register.jsp?msg=" + e.getMessage());
