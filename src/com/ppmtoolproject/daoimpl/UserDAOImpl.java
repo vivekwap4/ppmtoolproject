@@ -14,7 +14,7 @@ public class UserDAOImpl extends DatabaseConnection implements UserDAO {
 
 	@Override
 	public void save(User user) {
-		String sql = "INSERT INTO users(name, email, password, type) values (?,?,?,?)";
+		String sql = "INSERT INTO users(name, email, password, role) values (?,?,?,?)";
 		PreparedStatement pstmt = createPreparedStatement(sql);
 		try{
 			pstmt.setString(1, user.getName());
@@ -95,7 +95,6 @@ public class UserDAOImpl extends DatabaseConnection implements UserDAO {
 			PreparedStatement pstmt = createPreparedStatement(sql);
 			ResultSet rs = pstmt.executeQuery(sql);
 			while(rs.next()) {
-				
 				newUser.setName(rs.getString("name"));
 				newUser.setEmail(rs.getString("email"));
 				newUser.setPassword(rs.getString("password"));

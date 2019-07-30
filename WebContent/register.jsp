@@ -44,10 +44,12 @@
                     <p class="lead text-center">Create your Account</p>
                     <form action="./UserRegistrationController" method="POST">
                         <div class="form-group">
-                            <input type="text" class="form-control form-control-lg" placeholder="Name" name="name" required />
+                            <input type="text" class="form-control form-control-lg" placeholder="Name" name="name" 
+                       		value = "${user.name}" required />
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control form-control-lg" placeholder="Email Address" name="email" />
+                            <input type="email" class="form-control form-control-lg" placeholder="Email Address" name="email" 
+                            value = "${user.email}" required/>
 
                         </div>
                         <div class="form-group">
