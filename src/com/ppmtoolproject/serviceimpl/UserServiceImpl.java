@@ -5,7 +5,7 @@ import java.util.List;
 import com.ppmtoolproject.dao.UserDAO;
 import com.ppmtoolproject.daoimpl.UserDAOImpl;
 import com.ppmtoolproject.domain.User;
-import com.ppmtoolproject.exception.PasswordUnmatchException;
+import com.ppmtoolproject.exception.IncorrectEmailException;
 import com.ppmtoolproject.service.UserService;
 
 public class UserServiceImpl extends UserDAOImpl implements UserService{
@@ -35,7 +35,6 @@ public class UserServiceImpl extends UserDAOImpl implements UserService{
 
 	@Override
 	public User getUser(String email) {
-		// TODO Auto-generated method stub
 		return userDao.findByEmail(email);
 	}
 
@@ -67,7 +66,7 @@ public class UserServiceImpl extends UserDAOImpl implements UserService{
 		return false;
 	}
 	
-	public boolean authenticate(String email, String password){
+	public boolean authenticate(String email, String password) throws RuntimeException{
 		User loggingInUser = userDao.findByEmail(email);
 		System.out.println("Logging in user is " +loggingInUser.getEmail());
 		System.out.println("Logging in user's password is " +loggingInUser.getPassword());

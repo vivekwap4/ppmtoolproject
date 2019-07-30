@@ -30,11 +30,10 @@ public class UserLoginController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		User loggedInUser;
 		try {
 			if(service.authenticate(request.getParameter("email"), request.getParameter("password"))){
 				System.out.println("Inside the try block of doPost" + request.getParameter("email") + " " + request.getParameter("password"));
-				User loggedInUser = new User();
 				loggedInUser = service.getUser(request.getParameter("email"));
 				System.out.println("The email of logged in user is : "+service.getUser(request.getParameter("email")));
 				boolean create = true;
@@ -46,8 +45,11 @@ public class UserLoginController extends HttpServlet {
 			else{
 				throw new IncorrectPasswordException("Incorrect Password");
 			}
-		}catch(Exception e) {
+		}catch(IncorrectPasswordException e) {
+			//e.printStackTrace();
 			response.sendRedirect("login.jsp?msg=" + e.getMessage());
+		}catch(NullPointerException e) {
+			response.sendRedirect("login.jsp?msg=email is not in the system");
 		}
 	}
 }
