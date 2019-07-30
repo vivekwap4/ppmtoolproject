@@ -9,7 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.ppmtoolproject.dao.UserDAO;
+import com.ppmtoolproject.daoimpl.UserDAOImpl;
 import com.ppmtoolproject.domain.User;
+import com.ppmtoolproject.exception.EmailExistsException;
+import com.ppmtoolproject.exception.IncorrectEmailException;
 import com.ppmtoolproject.service.UserService;
 import com.ppmtoolproject.serviceimpl.UserServiceImpl;
 
@@ -31,7 +35,8 @@ public class UserLoginController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		try {
-			if(service.authenticate(request.getParameter("email"), request.getParameter("password"))){
+			
+			if( service.authenticate(request.getParameter("email"), request.getParameter("password"))){
 				System.out.println("Inside the try block of doPost" + request.getParameter("email") + " " + request.getParameter("password"));
 				User loggedInUser = new User();
 				loggedInUser = service.getUser(request.getParameter("email"));
@@ -43,10 +48,16 @@ public class UserLoginController extends HttpServlet {
 				response.sendRedirect("dashboard.jsp?type=" + session.getAttribute("userEmail")+"+"+ session.getAttribute("userName"));
 			}
 			else{
-				response.sendRedirect("login.jsp?msg=Please check username/password");
+				
+				throw new IncorrectEmailException("Incorrect password");
+					
 			}
-		}catch(Exception e) {
-			e.printStackTrace();
 		}
+		catch(Exception e) {
+			
+		response.sendRedirect("./login.jsp?msg="+e.getMessage());
+			
+		}
+	
 	}
 }

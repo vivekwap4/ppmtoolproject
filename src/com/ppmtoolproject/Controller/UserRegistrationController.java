@@ -46,10 +46,11 @@ public class UserRegistrationController extends HttpServlet {
 					response.sendRedirect("./login.jsp?msg=User created successfully");
 				}
 				else {
+					
 					throw new EmailExistsException("Email already exists");
 				}
 			
-			}else {
+			} else {
 				response.sendRedirect("./register.jsp?msg=Passwords do not match");
 			}
 		}catch(Exception e) {
