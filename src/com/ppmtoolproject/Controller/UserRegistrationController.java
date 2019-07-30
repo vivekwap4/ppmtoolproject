@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ppmtoolproject.domain.User;
+import com.ppmtoolproject.exception.EmailExistsException;
 import com.ppmtoolproject.service.UserService;
 import com.ppmtoolproject.serviceimpl.UserServiceImpl;
 
@@ -30,6 +31,7 @@ public class UserRegistrationController extends HttpServlet {
 		
 		User user = new User();
 		
+		try {
 			if(service.validatePassword(request.getParameter("password"), request.getParameter("password2"))){
 				user.setName(request.getParameter("name"));
 				user.setEmail(request.getParameter("email"));
@@ -44,12 +46,15 @@ public class UserRegistrationController extends HttpServlet {
 					response.sendRedirect("./login.jsp?msg=User created successfully");
 				}
 				else {
-					response.sendRedirect("./register.jsp?msg= Email already exists");
+					throw new EmailExistsException("Email already exists");
 				}
 			
 			}else {
 				response.sendRedirect("./register.jsp?msg=Passwords do not match");
 			}
+		}catch(Exception e) {
+			response.sendRedirect("./register.jsp?msg=" + e.getMessage());
+		}
 		
 	}
 
