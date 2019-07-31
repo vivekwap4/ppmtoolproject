@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ppmtoolproject.domain.User;
 import com.ppmtoolproject.exception.EmailExistsException;
+import com.ppmtoolproject.exception.PasswordMismatchException;
 import com.ppmtoolproject.service.UserService;
 import com.ppmtoolproject.serviceimpl.UserServiceImpl;
 
@@ -30,13 +31,13 @@ public class UserRegistrationController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		User user = new User();
+		user.setName(request.getParameter("name"));
+		user.setEmail(request.getParameter("email"));
+		user.setPassword(request.getParameter("password"));
+		request.setAttribute("user", user);
 		
 		try {
 			if(service.validatePassword(request.getParameter("password"), request.getParameter("password2"))){
-				user.setName(request.getParameter("name"));
-				user.setEmail(request.getParameter("email"));
-				user.setPassword(request.getParameter("password"));
-				user.setUserType(request.getParameter("type"));	
 				
 				System.out.println("The user email is in doPost and the value is "+user.getEmail());
 				
@@ -49,12 +50,17 @@ public class UserRegistrationController extends HttpServlet {
 					
 					throw new EmailExistsException("Email already exists");
 				}
+<<<<<<< HEAD
 			
 			} else {
 				response.sendRedirect("./register.jsp?msg=Passwords do not match");
+=======
+			}else {
+				throw new PasswordMismatchException("Password do not match");
+>>>>>>> 3736118563faa19e5c224c3f600bd5bbb878a4ae
 			}
 		}catch(Exception e) {
-			response.sendRedirect("./register.jsp?msg=" + e.getMessage());
+			getServletContext().getRequestDispatcher("/register.jsp?msg="+e.getMessage()).forward(request, response);
 		}
 		
 	}

@@ -5,7 +5,11 @@ import java.util.List;
 import com.ppmtoolproject.dao.UserDAO;
 import com.ppmtoolproject.daoimpl.UserDAOImpl;
 import com.ppmtoolproject.domain.User;
+<<<<<<< HEAD
 import com.ppmtoolproject.exception.IncorrectEmailException;
+=======
+import com.ppmtoolproject.exception.PasswordMismatchException;
+>>>>>>> 3736118563faa19e5c224c3f600bd5bbb878a4ae
 import com.ppmtoolproject.service.UserService;
 
 public class UserServiceImpl extends UserDAOImpl implements UserService{
@@ -46,7 +50,7 @@ public class UserServiceImpl extends UserDAOImpl implements UserService{
 	}
 	
 	@Override
-	public boolean validatePassword(String originalPassword, String confirmPassword) {
+	public boolean validatePassword(String originalPassword, String confirmPassword) throws PasswordMismatchException{
 		if(originalPassword.equals(confirmPassword)) return true;
 		else return false;
 	}
@@ -69,7 +73,13 @@ public class UserServiceImpl extends UserDAOImpl implements UserService{
 	
 	public boolean authenticate(String email, String password) throws RuntimeException{
 		User loggingInUser = userDao.findByEmail(email);
+<<<<<<< HEAD
 		if(loggingInUser == null) throw new IncorrectEmailException("Incorrect Email");
+=======
+		System.out.println("Logging in user is " +loggingInUser.getEmail());
+		System.out.println("Logging in user's password is " +loggingInUser.getPassword());
+		if(loggingInUser == null) return false;
+>>>>>>> 3736118563faa19e5c224c3f600bd5bbb878a4ae
 		
 		if(loggingInUser.getPassword().equals(password)){
 			return true;
