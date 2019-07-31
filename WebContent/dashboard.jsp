@@ -26,7 +26,37 @@
 <body>
 
 
-	<jsp:include page="WEB-INF/navbar.jsp"></jsp:include>
+	<!--  Navbar -->
+    <nav class="navbar navbar-expand-sm navbar-dark bg-primary mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="dashboard.jsp">
+                Personal Kanban Tool
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobile-nav">
+                <span class="navbar-toggler-icon" />
+            </button>
+
+            <div class="collapse navbar-collapse" id="mobile-nav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/ppmtoolproject/dashboard.jsp">
+                            Dashboard
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link " href="UserLogoutController">
+                            Log Out
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- End of NavBar -->
 
     <!-- Dashboard Component (Project Item included) -->
 
