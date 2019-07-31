@@ -71,11 +71,8 @@ public class UserServiceImpl extends UserDAOImpl implements UserService{
 		User loggingInUser = userDao.findByEmail(email);
 		System.out.println("Logging in user is " +loggingInUser.getEmail());
 		System.out.println("Logging in user's password is " +loggingInUser.getPassword());
-		if(loggingInUser == null) return false;
-		
-		if(loggingInUser.getPassword().equals(password)){
+		if(loggingInUser != null && loggingInUser.getPassword().equals(password)){
 			return true;
-		}
-		return false;
+		}else return false;
 	}
 }

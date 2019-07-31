@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ppmtoolproject.domain.User;
-import com.ppmtoolproject.exception.EmailExistsException;
+import com.ppmtoolproject.exception.IncorrectEmailException;
 import com.ppmtoolproject.exception.PasswordMismatchException;
 import com.ppmtoolproject.service.UserService;
 import com.ppmtoolproject.serviceimpl.UserServiceImpl;
@@ -47,7 +47,7 @@ public class UserRegistrationController extends HttpServlet {
 					response.sendRedirect("./login.jsp?msg=User created successfully");
 				}
 				else {
-					throw new EmailExistsException("Email already exists");
+					throw new IncorrectEmailException("Email already exists");
 				}
 			}else {
 				throw new PasswordMismatchException("Password do not match");
