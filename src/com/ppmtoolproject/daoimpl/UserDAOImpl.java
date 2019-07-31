@@ -75,7 +75,7 @@ public class UserDAOImpl extends DatabaseConnection implements UserDAO {
 				sqlUser.setName(rs.getString("name"));
 				sqlUser.setEmail(rs.getString("email"));
 				sqlUser.setPassword(rs.getString("password"));
-				sqlUser.setUserType(rs.getString("type"));
+				sqlUser.setUserType(rs.getString("role"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -98,7 +98,7 @@ public class UserDAOImpl extends DatabaseConnection implements UserDAO {
 				newUser.setName(rs.getString("name"));
 				newUser.setEmail(rs.getString("email"));
 				newUser.setPassword(rs.getString("password"));
-				newUser.setUserType(rs.getString("type"));
+				newUser.setUserType(rs.getString("role"));
 				aUser.add(newUser);
 			}
 		} catch (SQLException e) {
